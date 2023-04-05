@@ -12,32 +12,12 @@
 /// owned by Adam T Koehler, PhD - Copyright 2023.
 /// University of Illinois Chicago - CS 251 Spring 2023
 
-// TODO:
-// Choose which framework to keep and delete the other.
-//
 
-/*
-// Catch 1.0 Framework Testing
-#define CATCH_CONFIG_MAIN
-
-#include "catch.hpp"
-#include "priorityqueue.h"
-
-using namespace std;
-
-TEST_CASE("(0) no tests") 
-{
-    REQUIRE(true);
-}
-*/
-
-
-/*
 // Google Test Framework Testing
 #include <gtest/gtest.h>
 #include "priorityqueue.h"
 
-TEST(classname, one) {
-    EXPECT_EQ(true);
-}
-*/
+//TEST(classname, one) {
+ //   EXPECT_EQ(true);
+//}
+
