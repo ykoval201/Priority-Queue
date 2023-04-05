@@ -16,8 +16,46 @@
 // Google Test Framework Testing
 #include <gtest/gtest.h>
 #include "priorityqueue.h"
+#include <string>
 
-//TEST(classname, one) {
- //   EXPECT_EQ(true);
-//}
+
+//Milestone 1 testing
+//Milestone one tests enqueue, size, and constructor of the priority queue
+TEST(priorityQueue, Constructor) {
+
+    priorityqueue<int> pq;
+    priorityqueue<double> pq1;
+    priorityqueue<string> pq2;
+
+    EXPECT_EQ(0, pq.size());
+    EXPECT_EQ(0, pq1.size());
+    EXPECT_EQ(0, pq2.size());
+    
+}
+
+TEST(priorityQueue, Enqueue) {
+
+    //testing enqueue with ints
+    priorityqueue<int> pq;
+    pq.enqueue(1, 9);
+    pq.enqueue(2, 8);
+    pq.enqueue(3, 7);
+    EXPECT_EQ(3, pq.size());
+
+    //testing enqueue with doubles
+    priorityqueue<double> pq1;
+    pq1.enqueue(1.1, 9);
+    pq1.enqueue(2.2, 8);
+    pq1.enqueue(3.3, 7);
+    EXPECT_EQ(3, pq1.size());
+
+    //testing enqueue with strings
+    priorityqueue<string> pq2;
+    pq2.enqueue("one", 9);
+    pq2.enqueue("two", 8);
+    pq2.enqueue("three", 7);
+    EXPECT_EQ(3, pq2.size());
+
+}
+
 
