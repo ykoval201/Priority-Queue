@@ -38,11 +38,11 @@ public:
     // O(1)
     //
     priorityqueue() {
-        
-        
-        // TO DO: write this function.
-        
-        
+
+        root = nullptr;
+        size = 0;
+        curr = nullptr;
+
     }
     
     //
@@ -98,10 +98,32 @@ public:
     // of duplicate priorities
     //
     void enqueue(T value, int priority) {
+
+        //Create a new Node to be put into a tree
+        NODE* newNode = new NODE;
+        newNode->value = value;
+        newNode->priority = priority;
+        newNode->dup = false;
+        newNode->parent = nullptr;
+        newNode->link = nullptr;
+        newNode->left = nullptr;
+        newNode->right = nullptr;
+
+        //If this node is firt node in tree, set root to equall to this node
+        if (root == nullptr) {
+            root = newNode;
+            size++;
+            return;
+        }
+
+        //Create a pointer to the root node to traverse the tree
+        NODE* currNode = root;
+
+        //Traverse the tree until we find the correct location to insert the new node
         
         
-        // TO DO: write this function.
-        
+
+
         
     }
     //
@@ -131,7 +153,7 @@ public:
     int Size() {
         
         
-        return 0; // TO DO: update this return
+        return size;
         
         
     }
