@@ -4,7 +4,7 @@ ctest:
 
 gtest:
 	rm -f tests.exe
-	g++ -g -std=c++20 -Wall gtests.cpp -o tests.exe -lgtest -lgtest_main -lpthread
+	g++ -g -std=c++20 -Wall tests.cpp -o tests.exe -lgtest -lgtest_main -lpthread
 
 runtest:
 	./tests.exe
@@ -17,4 +17,4 @@ valgrind:
 	valgrind --tool=memcheck --leak-check=yes ./program.exe
 
 leaks:
-	leaks 
+	leaks --atExit --list -- ./program.exe

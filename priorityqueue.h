@@ -120,22 +120,50 @@ public:
         NODE* currNode = root;
         NODE* prevNode = nullptr;
 
+
+        //STEP 1: SEARCH
         //Traverse the tree until we find the correct location to insert the new node
         while(currNode  != nullptr){
 
-            if(currNode->priority == priority){ //Duplicate priority found found
+            if(currNode->priority == priority){ //Duplicate priority found 
 
             //Emplace the node into the linked list of the same priority of the current node
             LinkedPushBack(currNode, newNode);
+            currNode->dup = true;//Mark the current node as having duplicate priorities
+            size++;
+            return;
 
-                
+            }
+
+            if(currNode->priority > priority){ //go left
+
+                prevNode = currNode;
+                currNode = currNode->left;
+            }
+
+            else{ //go right
+
+                prevNode = currNode;
+                currNode = currNode->right;
             }
             
         }
-        
+        //STEP 2: INSERT
+
+       if(priority < prevNode->priority){
+         prevNode->left = newNode;
+         newNode->parent = prevNode;
+       }
+       else{
+            prevNode->right = newNode;
+            newNode->parent = prevNode;
+       }
 
 
-        
+       //Step 3: Update size
+
+         size++;
+ 
     }
     //
     // dequeue:
@@ -279,7 +307,9 @@ public:
     //Function to push a node to the back of a linked list of duplicate priorities
     void LinkedPushBack(NODE* currNode, NODE* newNode){
 
+        //Create a pointer to the head of the linked list to make sure we dont lose the head of the linked list
         NODE* linkedHead = currNode;
+
         //If the current node is the last node in the linked list, set the current node's link to the new node
         if(linkedHead->link == nullptr){
             linkedHead->link = newNode;

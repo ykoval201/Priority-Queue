@@ -27,9 +27,9 @@ TEST(priorityQueue, Constructor) {
     priorityqueue<double> pq1;
     priorityqueue<string> pq2;
 
-    EXPECT_EQ(0, pq.size());
-    EXPECT_EQ(0, pq1.size());
-    EXPECT_EQ(0, pq2.size());
+    EXPECT_EQ(0, pq.Size());
+    EXPECT_EQ(0, pq1.Size());
+    EXPECT_EQ(0, pq2.Size());
     
 }
 
@@ -40,21 +40,21 @@ TEST(priorityQueue, Enqueue) {
     pq.enqueue(1, 9);
     pq.enqueue(2, 8);
     pq.enqueue(3, 7);
-    EXPECT_EQ(3, pq.size());
+    EXPECT_EQ(3, pq.Size());
 
     //testing enqueue with doubles
     priorityqueue<double> pq1;
     pq1.enqueue(1.1, 9);
     pq1.enqueue(2.2, 8);
     pq1.enqueue(3.3, 7);
-    EXPECT_EQ(3, pq1.size());
+    EXPECT_EQ(3, pq1.Size());
 
     //testing enqueue with strings
     priorityqueue<string> pq2;
     pq2.enqueue("one", 9);
     pq2.enqueue("two", 8);
     pq2.enqueue("three", 7);
-    EXPECT_EQ(3, pq2.size());
+    EXPECT_EQ(3, pq2.Size());
 
 }
 
