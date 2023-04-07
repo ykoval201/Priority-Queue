@@ -57,9 +57,6 @@ TEST(priorityQueue, Enqueue) {
     pq2.enqueue("three", 7);
     EXPECT_EQ(3, pq2.Size());
 
-    //Testing Enqueue with duplicate priorities
-    priorityqueue<int> pq3;
-
 }
 
 //Milestone 2 testing (toString)
@@ -90,3 +87,24 @@ TEST(priorityQueue, toString){
 }
 
 //Milestone 3 testing (clear())
+
+TEST(priorityQueue, clear){
+
+    priorityqueue<string> pq;
+    pq.enqueue("Ben", 1);
+    pq.enqueue("Jen", 2);
+    pq.enqueue("Sven", 2);
+    pq.enqueue("Gwen", 3);
+    pq.clear();
+    EXPECT_EQ(0, pq.Size());
+
+    priorityqueue<string> pq1;
+    pq1.enqueue("Dolores", 5);
+    pq1.enqueue("Bernard", 4);
+    pq1.enqueue("Arnold", 8);
+    pq1.enqueue("William", 5);
+    pq1.enqueue("Teddy", 5);
+    pq1.enqueue("Ford", 2);
+    pq1.clear();
+    EXPECT_EQ(0, pq1.Size());
+}

@@ -68,11 +68,11 @@ public:
     // O(n), where n is total number of nodes in custom BST
     //
     void clear() {
-        
-        
-        // TO DO: write this function.
-        
-        
+
+        recursiveClear(root);
+        root = nullptr;
+        size = 0;
+   
     }
     
     //
@@ -84,7 +84,7 @@ public:
     ~priorityqueue() {
         
         
-        // TO DO: write this function.
+      clear();
         
         
     }
@@ -344,6 +344,32 @@ public:
         buildStream(node->right, output);
     }
     
+    //Helper function to recursively delete all nodes in the tree
+    void recursiveClear(NODE* node) {
+    if (node == nullptr) {
+        return;
+    }
+
+    // Traverse the left subtree
+    recursiveClear(node->left);
+
+    // Traverse the right subtree
+    recursiveClear(node->right);
+
+    // Delete the linked list of duplicate priorities
+    NODE* dupNode = node->link;
+    NODE* nextDupNode = nullptr;
+
+    while (dupNode != nullptr) {
+        nextDupNode = dupNode->link;
+        delete dupNode;
+        dupNode = nextDupNode;
+    }
+
+    // Delete the current node
+    delete node;
+}
+
     //
     // getRoot - Do not edit/change!
     //
