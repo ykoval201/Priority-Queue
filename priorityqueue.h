@@ -263,10 +263,9 @@ public:
     string toString() {
         
         
-        // TO DO: write this function.
-        string str = "";
-        return str; // TO DO: update this return
-        
+        stringstream ss;
+        buildStream(root, ss);
+        return ss.str();
         
     }
     
@@ -304,7 +303,7 @@ public:
         
     }
     
-    //Function to push a node to the back of a linked list of duplicate priorities
+    //Helper function to push a node to the back of a linked list of duplicate priorities
     void LinkedPushBack(NODE* currNode, NODE* newNode){
 
         //Create a pointer to the head of the linked list to make sure we dont lose the head of the linked list
@@ -319,6 +318,30 @@ public:
         //If the current node is not the last node in the linked list, traverse the linked list until the last node is found
         LinkedPushBack(linkedHead->link, newNode);
 
+    }
+
+    //Helper function to build a string recursively into a stream and return the stream
+    // Helper function
+    void buildStream(NODE* node, ostream& output) {
+        if (node == nullptr) {
+            return;
+        }
+
+        // Traverse the left subtree
+        buildStream(node->left, output);
+
+        // Output the current node's priority and value
+        output << node->priority << " value: " << node->value << endl;
+
+        // Output the linked list of duplicate priorities
+        NODE* dupNode = node->link;
+        while (dupNode != nullptr) {
+            output << dupNode->priority << " value: " << dupNode->value << endl;
+            dupNode = dupNode->link;
+        }
+
+        // Traverse the right subtree
+        buildStream(node->right, output);
     }
     
     //

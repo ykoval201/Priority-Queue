@@ -47,7 +47,8 @@ TEST(priorityQueue, Enqueue) {
     pq1.enqueue(1.1, 9);
     pq1.enqueue(2.2, 8);
     pq1.enqueue(3.3, 7);
-    EXPECT_EQ(3, pq1.Size());
+    pq1.enqueue(4.4, 7);
+    EXPECT_EQ(4, pq1.Size());
 
     //testing enqueue with strings
     priorityqueue<string> pq2;
@@ -56,6 +57,36 @@ TEST(priorityQueue, Enqueue) {
     pq2.enqueue("three", 7);
     EXPECT_EQ(3, pq2.Size());
 
+    //Testing Enqueue with duplicate priorities
+    priorityqueue<int> pq3;
+
 }
 
+//Milestone 2 testing (toString)
 
+//Sample output for toString:
+//“1 value: Ben\n
+//2 value: Jen\n
+//2 value: Sven\n
+//3 value: Gwen\n”
+TEST(priorityQueue, toString){
+
+
+    priorityqueue<string> pq;
+    pq.enqueue("Ben", 1);
+    pq.enqueue("Jen", 2);
+    pq.enqueue("Sven", 2);
+    pq.enqueue("Gwen", 3);
+    EXPECT_EQ("1 value: Ben\n2 value: Jen\n2 value: Sven\n3 value: Gwen\n", pq.toString());
+
+    priorityqueue<string> pq1;
+    pq1.enqueue("Dolores", 5);
+    pq1.enqueue("Bernard", 4);
+    pq1.enqueue("Arnold", 8);
+    pq1.enqueue("William", 5);
+    pq1.enqueue("Teddy", 5);
+    pq1.enqueue("Ford", 2);
+    EXPECT_EQ("2 value: Ford\n4 value: Bernard\n5 value: Dolores\n5 value: William\n5 value: Teddy\n8 value: Arnold\n", pq1.toString());
+}
+
+//Milestone 3 testing (clear())
