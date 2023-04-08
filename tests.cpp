@@ -111,6 +111,8 @@ TEST(priorityQueue, clear){
     EXPECT_EQ(0, pq1.Size());
 }
 
+//Milestone 4 testing (equals operator)
+
 TEST(priorityQueue, asignmentOperator){
 
     priorityqueue<string> pq;
@@ -123,4 +125,26 @@ TEST(priorityQueue, asignmentOperator){
     pq1 = pq;
     EXPECT_EQ("1 value: Ben\n2 value: Jen\n2 value: Sven\n3 value: Gwen\n", pq1.toString());
 
+    priorityqueue<string> pq2;
+    pq2.enqueue("Dolores", 5);
+    pq2.enqueue("Bernard", 4);
+    pq2.enqueue("Arnold", 8);
+    pq2.enqueue("William", 5);
+    pq2.enqueue("Teddy", 5);
+    pq2.enqueue("Ford", 2);
+    pq2.enqueue("Dolores", 1);
+
+    priorityqueue<string> pq3;
+    pq3 = pq2;
+    EXPECT_EQ("1 value: Dolores\n2 value: Ford\n4 value: Bernard\n5 value: Dolores\n5 value: William\n5 value: Teddy\n8 value: Arnold\n", pq3.toString());
+
+    pq3 = pq; 
+    EXPECT_EQ("1 value: Ben\n2 value: Jen\n2 value: Sven\n3 value: Gwen\n", pq3.toString());
+
+    pq3 = pq3;
+    EXPECT_EQ("1 value: Ben\n2 value: Jen\n2 value: Sven\n3 value: Gwen\n", pq3.toString());
+
 }
+
+//Milestone 5 testing (begin and next functions)
+

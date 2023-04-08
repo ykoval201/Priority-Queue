@@ -54,12 +54,20 @@ public:
     //
     priorityqueue& operator=(const priorityqueue& other) {
         
-        clear();
-        recursiveCopy(other.root);
-        size = other.size;
+        // Check for self-assignment
+    if (this == &other) {
         return *this;
-        
-        
+    }
+
+    // Clear the current priority queue
+    this->clear();
+
+    // Perform a deep copy of the other priority queue
+    this->root = recursiveCopy(other.root);
+    this->size = other.size;
+    this->curr = nullptr; // Reset the curr pointer as it's not needed for deep copy
+
+    return *this;
     }
     
     //
@@ -300,6 +308,8 @@ public:
         
         
     }
+
+    //*************************HELPER FUNCTIONS************************************//
     
     //Helper function to push a node to the back of a linked list of duplicate priorities
     void LinkedPushBack(NODE* currNode, NODE* newNode){
@@ -369,17 +379,52 @@ public:
 }
 
     //Helper function to recursively copy all nodes in the tree
-    NODE* recursiveCopy(NODE* node) {
-    if (node == nullptr) {
+   NODE* recursiveCopy(NODE* otherNode) {
+    if (otherNode == nullptr) {
         return nullptr;
     }
 
-    
+    // Create a new node and copy the data
+    NODE* newNode = new NODE;
+    newNode->priority = otherNode->priority;
+    newNode->value = otherNode->value;
+    newNode->dup = otherNode->dup;
+    newNode->parent = nullptr;
+    newNode->link = nullptr;
+    newNode->left = nullptr;
+    newNode->right = nullptr;
+
+    // Copy the linked list of nodes with duplicate priorities
+    NODE* otherDupNode = otherNode->link;
+    NODE* newDupNode = nullptr;
+
+    while (otherDupNode != nullptr) {
+        NODE* tempDupNode = new NODE;
+        tempDupNode->priority = otherDupNode->priority;
+        tempDupNode->value = otherDupNode->value;
+        tempDupNode->dup = otherDupNode->dup;
+        tempDupNode->parent = nullptr;
+        tempDupNode->link = nullptr;
+        tempDupNode->left = nullptr;
+        tempDupNode->right = nullptr;
+
+        if (newNode->link == nullptr) {
+            newNode->link = tempDupNode;
+        } else {
+            newDupNode->link = tempDupNode;
+        }
+
+        newDupNode = tempDupNode;
+        otherDupNode = otherDupNode->link;
+    }
+
+    // Copy the left and right subtrees
+    newNode->left = recursiveCopy(otherNode->left);
+    newNode->right = recursiveCopy(otherNode->right);
+
+    return newNode;
 }
-
-
-
-
+    
     // getRoot - Do not edit/change!
     //
     // Used for testing the BST.
