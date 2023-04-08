@@ -221,10 +221,11 @@ public:
     //    cout << priority << " value: " << value << endl;
     void begin() {
         
-        
-        // TO DO: write this function.
-        
-        
+        curr = root;
+    while (curr != nullptr && curr->left != nullptr) {
+        curr = curr->left;
+    }
+
     }
     
     //
@@ -249,13 +250,47 @@ public:
     //    cout << priority << " value: " << value << endl;
     //
     bool next(T& value, int &priority) {
-        
-        
-        // TO DO: write this function.
-        return true; // TO DO: update this return
-        
-        
+    // If curr is nullptr, we've reached the end of the inorder traversal
+    if (curr == nullptr) {
+        return false;
     }
+    
+    // Set the value and priority to the current node's value and priority
+    value = curr->value;
+    priority = curr->priority;
+
+    // Check if there is any node left in the linked list of duplicate priorities
+    if (curr->link != nullptr) {
+        curr = curr->link;
+    } else {
+        // Move back to the root of the linked list of nodes with the same priority
+        while (curr->parent != nullptr && curr->parent->link == curr) {
+            curr = curr->parent;
+        }
+        // If the current node has a right child, find the leftmost node in the right subtree
+        if (curr->right != nullptr) {
+            curr = curr->right;
+            while (curr->left != nullptr) {
+                curr = curr->left;
+            }
+        } else {
+            // If the current node has no right child, move up the tree until we find a node that is the left child of its parent
+            while (curr->parent != nullptr && curr == curr->parent->right) {
+                curr = curr->parent;
+            }
+            // If the parent exists, move to the parent
+            if (curr->parent != nullptr) {
+                curr = curr->parent;
+            } else {
+                // If the parent is nullptr, we've reached the end of the inorder traversal
+                curr = nullptr;
+                return false;
+            }
+        }
+    }
+    
+    return true;
+}
     
     //
     // toString:
@@ -318,8 +353,10 @@ public:
         NODE* linkedHead = currNode;
 
         //If the current node is the last node in the linked list, set the current node's link to the new node
+        // and set its parent to the current node
         if(linkedHead->link == nullptr){
             linkedHead->link = newNode;
+            newNode->parent = linkedHead;
             return;
         }
 
@@ -425,6 +462,7 @@ public:
     return newNode;
 }
     
+   
     // getRoot - Do not edit/change!
     //
     // Used for testing the BST.

@@ -148,3 +148,63 @@ TEST(priorityQueue, asignmentOperator){
 
 //Milestone 5 testing (begin and next functions)
 
+TEST(priorityQueue, beginAndNext){
+
+    priorityqueue<string> pq;
+    pq.enqueue("Ben", 4);
+    pq.enqueue("Jen", 2);
+    pq.enqueue("Sven", 2);
+    pq.enqueue("Gwen", 1);
+    
+    EXPECT_EQ("1 value: Gwen\n2 value: Jen\n2 value: Sven\n4 value: Ben\n", pq.toString());
+
+    pq.begin();
+    int priority;
+    string value;
+    pq.next(value, priority);
+    EXPECT_EQ(1, priority);
+    EXPECT_EQ("Gwen", value);
+    pq.next(value, priority);
+    EXPECT_EQ(2, priority);
+    EXPECT_EQ("Jen", value);
+    pq.next(value, priority);
+    EXPECT_EQ(2, priority);
+    EXPECT_EQ("Sven", value);
+    pq.next(value, priority);
+    EXPECT_EQ(4, priority);
+    EXPECT_EQ("Ben", value);
+    
+}
+
+TEST(priorityQueue, beginAndNext2){
+
+    priorityqueue<string> pq1;
+    pq1.enqueue("Dolores", 5);
+    pq1.enqueue("Bernard", 4);
+    pq1.enqueue("Arnold", 8);
+    pq1.enqueue("William", 5);
+    pq1.enqueue("Teddy", 5);
+    pq1.enqueue("Ford", 2);
+
+    EXPECT_EQ("2 value: Ford\n4 value: Bernard\n5 value: Dolores\n5 value: William\n5 value: Teddy\n8 value: Arnold\n", pq1.toString());
+
+    pq1.begin();
+    int priority;
+    string value;
+    pq1.next(value, priority);
+    EXPECT_EQ(2, priority);
+    EXPECT_EQ("Ford", value);
+    pq1.next(value, priority);
+    EXPECT_EQ(4, priority);
+    EXPECT_EQ("Bernard", value);
+    pq1.next(value, priority);
+    EXPECT_EQ(5, priority);
+    EXPECT_EQ("Dolores", value);
+    pq1.next(value, priority);
+    EXPECT_EQ(5, priority);
+    EXPECT_EQ("William", value);
+    pq1.next(value, priority);
+    EXPECT_EQ(5, priority);
+    EXPECT_EQ("Teddy", value);
+    
+}
