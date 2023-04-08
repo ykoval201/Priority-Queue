@@ -33,7 +33,7 @@ TEST(priorityQueue, Constructor) {
     
 }
 
-TEST(priorityQueue, Enqueue) {
+TEST(priorityQueue, enqueue) {
 
     //testing enqueue with ints
     priorityqueue<int> pq;
