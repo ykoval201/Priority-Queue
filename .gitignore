@@ -1,3 +1,9 @@
 tests.exe.dSYM/Contents/Info.plist
 tests.exe.dSYM/Contents/Resources/DWARF/tests.exe
 tests.exe
+main.dSYM/Contents/Resources/DWARF/main
+main.dSYM/Contents/Info.plist
+.gitignore
+main.cpp
+main
+.vscode/tasks.json
