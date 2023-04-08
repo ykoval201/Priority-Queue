@@ -54,8 +54,9 @@ public:
     //
     priorityqueue& operator=(const priorityqueue& other) {
         
-        
-        // TO DO: write this function.
+        clear();
+        recursiveCopy(other.root);
+        size = other.size;
         return *this;
         
         
@@ -191,10 +192,7 @@ public:
     //
     int Size() {
         
-        
         return size;
-        
-        
     }
     
     //
@@ -370,7 +368,18 @@ public:
     delete node;
 }
 
-    //
+    //Helper function to recursively copy all nodes in the tree
+    NODE* recursiveCopy(NODE* node) {
+    if (node == nullptr) {
+        return nullptr;
+    }
+
+    
+}
+
+
+
+
     // getRoot - Do not edit/change!
     //
     // Used for testing the BST.

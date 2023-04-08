@@ -95,6 +95,7 @@ TEST(priorityQueue, clear){
     pq.enqueue("Jen", 2);
     pq.enqueue("Sven", 2);
     pq.enqueue("Gwen", 3);
+    EXPECT_EQ(4, pq.Size());
     pq.clear();
     EXPECT_EQ(0, pq.Size());
 
@@ -105,6 +106,21 @@ TEST(priorityQueue, clear){
     pq1.enqueue("William", 5);
     pq1.enqueue("Teddy", 5);
     pq1.enqueue("Ford", 2);
+    EXPECT_EQ(6, pq1.Size());
     pq1.clear();
     EXPECT_EQ(0, pq1.Size());
+}
+
+TEST(priorityQueue, asignmentOperator){
+
+    priorityqueue<string> pq;
+    pq.enqueue("Ben", 1);
+    pq.enqueue("Jen", 2);
+    pq.enqueue("Sven", 2);
+    pq.enqueue("Gwen", 3);
+
+    priorityqueue<string> pq1;
+    pq1 = pq;
+    EXPECT_EQ("1 value: Ben\n2 value: Jen\n2 value: Sven\n3 value: Gwen\n", pq1.toString());
+
 }
