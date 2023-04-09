@@ -275,3 +275,37 @@ TEST(priorityQueue, peek){
     
     
 }
+
+//Milestone 8 testing (==)
+
+TEST(priorityQueue, equality){
+
+    priorityqueue<string> pq1;
+    pq1.enqueue("Ben", 4);
+    pq1.enqueue("Jen", 2);
+    pq1.enqueue("Sven", 2);
+    pq1.enqueue("Gwen", 1);
+
+    priorityqueue<string> pq2;
+    pq2.enqueue("Ben", 4);
+    pq2.enqueue("Jen", 2);
+    pq2.enqueue("Sven", 2);
+    pq2.enqueue("Gwen", 1);
+
+    EXPECT_TRUE(pq1 == pq2);
+
+    priorityqueue<string> pq3;
+    pq3.enqueue("Dolores", 5);
+    pq3.enqueue("Bernard", 4);
+    pq3.enqueue("Arnold", 8);
+    pq3.enqueue("William", 5);
+    pq3.enqueue("Teddy", 5);
+    pq3.enqueue("Ford", 2);
+
+
+    EXPECT_FALSE(pq1 == pq3);
+}
+
+
+
+   

@@ -395,10 +395,7 @@ public:
     //
     bool operator==(const priorityqueue& other) const {
         
-        
-        // TO DO: write this function.
-        return true; // TO DO: update this return
-        
+        return recursiveEqual(root, other.root);
         
     }
 
@@ -520,7 +517,35 @@ public:
     return newNode;
 }
     
-   
+   //Helper function to determine if two trees are equal
+    bool recursiveEqual(NODE* node, NODE* otherNode) const {
+    //Base cases
+    if (node == nullptr && otherNode == nullptr) {
+        return true;
+    } 
+    else if (node == nullptr || otherNode == nullptr) {
+        return false;
+    }
+    else{
+
+        if( node->value != otherNode->value ||
+            node->priority != otherNode->priority ||
+            node->dup != otherNode->dup){
+            return false;
+        }
+
+        if(recursiveEqual(node->left, otherNode->left) && recursiveEqual(node->right, otherNode->right) && recursiveEqual(node->link, otherNode->link)){ 
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+ }
+    
+
+
     // getRoot - Do not edit/change!
     //
     // Used for testing the BST.
