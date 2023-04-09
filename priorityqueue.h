@@ -183,14 +183,65 @@ public:
     // of duplicate priorities
     //
     T dequeue() {
-        
-        
-        // TO DO: write this function.
-        T valueOut;
-        return valueOut; // TO DO: update this return
-        
-        
+    // Check if the priority queue is empty
+    if (root == nullptr) {
+        T value = T();
+        return value;
     }
+
+    // Find the first node (minimum priority) in the priority queue
+    NODE* firstNode = root;
+    while (firstNode->left != nullptr) {
+        firstNode = firstNode->left;
+    }
+
+    // Save the value to be returned
+    T valueOut = firstNode->value;
+
+    // If the first node has a linked list of duplicate priorities
+    if (firstNode->link != nullptr) {
+        NODE* nextNode = firstNode->link;
+        // Update the links and pointers
+        if (firstNode->right != nullptr) {
+            nextNode->right = firstNode->right;
+            firstNode->right->parent = nextNode;
+        }
+        nextNode->parent = firstNode->parent;
+        if (firstNode->parent != nullptr) {
+            if (firstNode->parent->left == firstNode) {
+                firstNode->parent->left = nextNode;
+            } else {
+                firstNode->parent->right = nextNode;
+            }
+        } else {
+            root = nextNode;
+        }
+    } else {
+        // If the first node has a right child, update the links and pointers
+        if (firstNode->right != nullptr) {
+            firstNode->right->parent = firstNode->parent;
+            if (firstNode->parent != nullptr) {
+                firstNode->parent->left = firstNode->right;
+            } else {
+                root = firstNode->right;
+            }
+        } else {
+            // If the first node is a leaf node, update the parent's link
+            if (firstNode->parent != nullptr) {
+                firstNode->parent->left = nullptr;
+            } else {
+                root = nullptr;
+            }
+        }
+    }
+
+    // Delete the first node and decrement the size
+    delete firstNode;
+    size--;
+
+    return valueOut;
+}
+
     
     //
     // Size:

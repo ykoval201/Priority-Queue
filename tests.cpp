@@ -208,3 +208,55 @@ TEST(priorityQueue, beginAndNext2){
     EXPECT_EQ("Teddy", value);
     
 }
+
+//Milestone 6 testing (dequeue)
+
+TEST(priorityQueue, dequeue){
+
+    priorityqueue<string> pq;
+    pq.enqueue("Ben", 4);
+    pq.enqueue("Jen", 2);
+    pq.enqueue("Sven", 2);
+    pq.enqueue("Gwen", 1);
+    
+    EXPECT_EQ("1 value: Gwen\n2 value: Jen\n2 value: Sven\n4 value: Ben\n", pq.toString());
+
+    EXPECT_EQ("Gwen", pq.dequeue());
+    EXPECT_EQ("Jen", pq.dequeue());
+    EXPECT_EQ(2, pq.Size());
+    
+    
+}
+
+TEST(priorityQueue, dequeue2){
+
+    priorityqueue<string> pq1;
+    EXPECT_EQ("", pq1.dequeue());
+
+    priorityqueue<int> pq2;
+    EXPECT_EQ(0, pq2.dequeue());
+
+    priorityqueue<string> pq3;
+    pq3.enqueue("Dolores", 5);
+    pq3.enqueue("Bernard", 4);
+    EXPECT_EQ("Bernard", pq3.dequeue());
+
+}
+
+TEST(priorityQueue, dequeue3){
+    priorityqueue<double> pq;
+    pq.enqueue(1.1, 4);
+    pq.enqueue(2.2, 2);
+    pq.enqueue(3.7, 8);
+    pq.enqueue(4.4, 5);
+    pq.enqueue(5.5, 1);
+    pq.enqueue(6.6, 5);
+    pq.enqueue(7.7, 2);
+    EXPECT_EQ(5.5, pq.dequeue());
+    EXPECT_EQ(2.2, pq.dequeue());
+    EXPECT_EQ(7.7, pq.dequeue());
+
+}
+
+//Milestone 7 testing (peek)
+    
