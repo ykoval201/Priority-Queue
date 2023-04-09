@@ -371,11 +371,18 @@ public:
     //
     T peek() {
         
-        
-        // TO DO: write this function.
-        T valueOut;
-        return valueOut; // TO DO: update this return
-        
+      // Check if the priority queue is empty
+    if (root == nullptr) {
+        T value = T();
+        return value;
+    }
+
+    NODE* firstNode = root;
+    while(firstNode->left != nullptr) {
+        firstNode = firstNode->left;
+    }   
+
+    return firstNode->value;
         
     }
     

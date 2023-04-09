@@ -259,4 +259,19 @@ TEST(priorityQueue, dequeue3){
 }
 
 //Milestone 7 testing (peek)
+
+TEST(priorityQueue, peek){
+
+    priorityqueue<string> pq;
+    pq.enqueue("Ben", 4);
+    pq.enqueue("Jen", 2);
+    pq.enqueue("Sven", 2);
+    pq.enqueue("Gwen", 1);
     
+    EXPECT_EQ("1 value: Gwen\n2 value: Jen\n2 value: Sven\n4 value: Ben\n", pq.toString());
+
+    EXPECT_EQ("Gwen", pq.peek());
+    EXPECT_EQ(4, pq.Size());
+    
+    
+}
