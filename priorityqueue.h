@@ -5,6 +5,10 @@
 /// Assignment details and provided code are created and
 /// owned by Adam T Koehler, PhD - Copyright 2023.
 /// University of Illinois Chicago - CS 251 Spring 2023
+//Student: Yurii Koval
+//System: Mac/Linux
+//CS251
+
 
 #pragma once
 
